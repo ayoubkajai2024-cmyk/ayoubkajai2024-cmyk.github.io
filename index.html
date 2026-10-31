@@ -1,144 +1,145 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>[Prénom Nom] — Calcul haute performance et Big Data</title>
-<meta name="description" content="Portfolio de [Prénom Nom], étudiant en [formation], spécialisé en calcul haute performance (HPC) et traitement de données massives.">
+<title>Ayoub Kajai — e-Portfolio (ENSEEIHT, Sciences du Numérique)</title>
+<meta name="description" content="e-Portfolio d’Ayoub Kajai, élève-ingénieur à l’INP-ENSEEIHT : data, calcul haute performance et Big Data. Parcours, projets, CV FR/EN.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='1' y='1' width='6' height='6' fill='%230E6A8A'/><rect x='9' y='1' width='6' height='6' fill='%23E3A008'/><rect x='1' y='9' width='6' height='6' fill='%23E3A008'/><rect x='9' y='9' width='6' height='6' fill='%230E6A8A'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <style>
-  /* ===== Couleurs : modifie ces variables pour changer tout le thème ===== */
+  /* ===== Couleurs (mode clair, puis mode sombre) ===== */
   :root {
-    --fond: #F1F4F6;
-    --surface: #FFFFFF;
-    --encre: #15202B;
-    --encre-douce: #4A5866;
-    --trait: #D3DBE2;
-    --accent: #0E6A8A;      /* bleu « interconnexion » */
-    --actif: #E3A008;       /* cœurs de calcul occupés */
-    --repos: #DCE4EA;       /* cœurs au repos */
+    --fond: #F1F4F6; --surface: #FFFFFF; --encre: #15202B; --encre-douce: #4A5866;
+    --trait: #D3DBE2; --accent: #0E6A8A; --actif: #E3A008; --repos: #DCE4EA;
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --fond: #101820;
-      --surface: #16212B;
-      --encre: #E2E8EE;
-      --encre-douce: #9EADBB;
-      --trait: #2A3946;
-      --accent: #5DB9D8;
-      --actif: #F2B632;
-      --repos: #22313E;
+    :root:not([data-theme="light"]) {
+      --fond: #101820; --surface: #16212B; --encre: #E2E8EE; --encre-douce: #9EADBB;
+      --trait: #2A3946; --accent: #5DB9D8; --actif: #F2B632; --repos: #22313E;
       color-scheme: dark;
     }
   }
+  :root[data-theme="dark"] {
+    --fond: #101820; --surface: #16212B; --encre: #E2E8EE; --encre-douce: #9EADBB;
+    --trait: #2A3946; --accent: #5DB9D8; --actif: #F2B632; --repos: #22313E;
+    color-scheme: dark;
+  }
+
+  /* ===== Bilingue : on masque la langue inactive ===== */
+  html[data-lang="fr"] body [lang="en"], html[data-lang="en"] body [lang="fr"] { display: none !important; }
 
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
   body {
-    margin: 0;
-    background: var(--fond);
-    color: var(--encre);
+    margin: 0; background: var(--fond); color: var(--encre);
     font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    font-variation-settings: "wdth" 100;
-    font-size: 1.0625rem;
-    line-height: 1.6;
+    font-variation-settings: "wdth" 100; font-size: 1.0625rem; line-height: 1.6;
   }
   a { color: var(--accent); text-underline-offset: 3px; }
   a:focus-visible, button:focus-visible { outline: 3px solid var(--actif); outline-offset: 3px; border-radius: 2px; }
-
   .conteneur { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
 
-  /* ===== En-tête ===== */
-  header { border-bottom: 1px solid var(--trait); }
-  header .conteneur { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 1rem; padding-bottom: 1rem; flex-wrap: wrap; }
-  .marque { font-weight: 700; font-variation-settings: "wdth" 118; text-decoration: none; color: var(--encre); }
+  /* ===== En-tête fixe ===== */
+  header { position: sticky; top: 0; z-index: 10; background: var(--fond); border-bottom: 1px solid var(--trait); }
+  header .conteneur { display: flex; align-items: center; gap: 1.5rem; padding-top: 0.85rem; padding-bottom: 0.85rem; flex-wrap: wrap; }
+  .marque { font-weight: 700; font-variation-settings: "wdth" 118; text-decoration: none; color: var(--encre); margin-right: auto; }
   nav ul { list-style: none; display: flex; gap: 1.25rem; margin: 0; padding: 0; flex-wrap: wrap; }
   nav a { color: var(--encre-douce); text-decoration: none; }
   nav a:hover { color: var(--accent); text-decoration: underline; }
+  .reglages { display: flex; gap: 0.5rem; }
+  .reglages button {
+    font: inherit; font-size: 0.9rem; color: var(--encre); background: var(--surface);
+    border: 1px solid var(--trait); border-radius: 6px; padding: 0.3rem 0.7rem; cursor: pointer;
+  }
+  .reglages button:hover { border-color: var(--accent); }
 
   /* ===== Hero ===== */
   .hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 3rem; align-items: center; padding: 4.5rem 0 4rem; }
   h1 {
-    font-variation-settings: "wdth" 125;
-    font-weight: 800;
-    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-    line-height: 1.02;
-    letter-spacing: -0.02em;
-    margin: 0 0 1.25rem;
+    font-variation-settings: "wdth" 125; font-weight: 800; font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 1.25rem;
   }
   .accroche { font-size: 1.25rem; max-width: 34rem; margin: 0 0 1rem; }
   .recherche { color: var(--encre-douce); max-width: 34rem; margin: 0 0 2rem; }
   .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-  .bouton {
-    display: inline-block; padding: 0.75rem 1.25rem; border-radius: 6px;
-    font-weight: 600; text-decoration: none; border: 2px solid var(--accent);
-  }
+  .bouton { display: inline-block; padding: 0.7rem 1.15rem; border-radius: 6px; font-weight: 600; text-decoration: none; border: 2px solid var(--accent); }
   .bouton.plein { background: var(--accent); color: var(--fond); }
   .bouton.vide { color: var(--accent); }
 
-  /* ===== Le cluster : 4 nœuds × 16 cœurs ===== */
+  /* ===== Cluster : 4 nœuds × 16 cœurs ===== */
   figure.cluster { margin: 0; }
   .noeuds { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
   .noeud { background: var(--surface); border: 1px solid var(--trait); border-radius: 4px; padding: 0.7rem; }
-  .noeud span.nom { display: block; font-size: 0.8rem; color: var(--encre-douce); margin-bottom: 0.45rem; }
+  .noeud .nom { display: block; font-size: 0.8rem; color: var(--encre-douce); margin-bottom: 0.45rem; }
   .coeurs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
   .coeur { aspect-ratio: 1; border-radius: 2px; background: var(--repos); transition: background-color 0.25s ease; }
   .cluster.lance .coeur { background: var(--actif); }
   .cluster.reinit .coeur { transition: none; }
   figcaption { font-size: 0.9rem; color: var(--encre-douce); margin-top: 0.9rem; display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; flex-wrap: wrap; }
-  figcaption button {
-    font: inherit; color: var(--accent); background: none; border: none; padding: 0;
-    text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
-  }
+  figcaption button { font: inherit; color: var(--accent); background: none; border: none; padding: 0; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 
   /* ===== Sections ===== */
   section { padding: 3.5rem 0; border-top: 1px solid var(--trait); }
-  h2 { font-variation-settings: "wdth" 112; font-weight: 700; font-size: 1.75rem; line-height: 1.2; margin: 0 0 1.75rem; }
-  h3 { font-size: 1.15rem; margin: 0 0 0.4rem; }
+  h2 { font-variation-settings: "wdth" 112; font-weight: 700; font-size: 1.75rem; line-height: 1.2; margin: 0 0 1.5rem; }
+  h3 { font-size: 1.15rem; margin: 0 0 0.35rem; }
   p { max-width: 42rem; }
+
+  /* Pitch : texte + emplacement vidéo */
+  .pitch { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 2.5rem; align-items: start; }
+  .pitch blockquote { max-width: 44rem; }
+  .pitch blockquote { margin: 0; font-size: 1.2rem; line-height: 1.55; border-left: 3px solid var(--actif); padding-left: 1.1rem; }
+  .pitch video { width: 100%; aspect-ratio: 16 / 9; border-radius: 6px; background: var(--surface); border: 1px solid var(--trait); }
+
+  /* Avenir : grille 2 × 2 */
+  .avenir { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem 3rem; }
+  .avenir > div { border-left: 3px solid var(--accent); padding-left: 1.1rem; }
+  .avenir p { margin: 0; }
 
   /* Compétences */
   .competences { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .competences ul { list-style: none; margin: 0; padding: 0; }
   .competences li { padding: 0.35rem 0; border-bottom: 1px solid var(--trait); }
 
-  /* Projets : une ligne par projet, le résultat chiffré en avant */
-  .projet { display: grid; grid-template-columns: 9rem 1fr; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--trait); }
-  .projet:first-of-type { padding-top: 0; }
-  .resultat { font-variation-settings: "wdth" 125; font-weight: 800; font-size: 2rem; line-height: 1; color: var(--accent); }
-  .resultat small { display: block; font-size: 0.8rem; font-weight: 400; font-variation-settings: "wdth" 100; color: var(--encre-douce); margin-top: 0.35rem; line-height: 1.3; }
-  .projet p { margin: 0 0 0.4rem; }
-  .outils { font-size: 0.9rem; color: var(--encre-douce); }
-
-  /* Interviews */
-  .interviews { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-  blockquote { margin: 0 0 0.6rem; font-size: 1.15rem; line-height: 1.5; border-left: 3px solid var(--actif); padding-left: 1rem; }
-  .qui { color: var(--encre-douce); font-size: 0.95rem; margin: 0; padding-left: calc(1rem + 3px); }
-
-  /* Parcours : vraie chronologie, donc une ligne verticale */
+  /* Parcours antichronologique */
   ol.parcours { list-style: none; margin: 0; padding: 0 0 0 1.5rem; border-left: 2px solid var(--trait); max-width: 46rem; }
   ol.parcours li { position: relative; padding: 0 0 1.75rem; }
   ol.parcours li::before {
     content: ""; position: absolute; left: calc(-1.5rem - 7px); top: 0.45rem;
     width: 12px; height: 12px; border-radius: 50%; background: var(--fond); border: 2px solid var(--accent);
   }
+  ol.parcours li.actuel::before { background: var(--actif); border-color: var(--actif); }
   .periode { font-size: 0.9rem; color: var(--encre-douce); display: block; }
   ol.parcours p { margin: 0.2rem 0 0; }
 
-  /* Contact */
+  /* Projets */
+  .projet { display: grid; grid-template-columns: 10rem 1fr; gap: 1.5rem; padding: 1.4rem 0; border-bottom: 1px solid var(--trait); }
+  .projet:first-of-type { padding-top: 0; }
+  .type { font-variation-settings: "wdth" 115; font-weight: 700; color: var(--accent); }
+  .projet p { margin: 0 0 0.4rem; }
+  .outils { font-size: 0.9rem; color: var(--encre-douce); }
+
+  /* Interviews */
+  .interviews { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 1.5rem; }
+  .interviews blockquote { margin: 0 0 0.6rem; font-size: 1.1rem; border-left: 3px solid var(--actif); padding-left: 1rem; }
+  .qui { color: var(--encre-douce); font-size: 0.95rem; margin: 0; padding-left: calc(1rem + 3px); }
+
+  /* Mobilité / engagement / sports */
+  .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+  .trio section { border-top: none; padding: 0; }
+
   .contact ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 1.5rem; flex-wrap: wrap; }
   footer { padding: 2rem 0 3rem; color: var(--encre-douce); font-size: 0.9rem; border-top: 1px solid var(--trait); }
 
-  /* ===== Mobile ===== */
   @media (max-width: 52rem) {
-    .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2.5rem; }
-    .competences, .interviews { grid-template-columns: 1fr; }
-    .projet { grid-template-columns: 1fr; gap: 0.6rem; }
+    .hero, .competences, .interviews, .trio, .avenir { grid-template-columns: 1fr; }
+    .hero { padding-top: 3rem; gap: 2.5rem; }
+    .projet { grid-template-columns: 1fr; gap: 0.4rem; }
+    nav { order: 3; width: 100%; }
   }
 </style>
 </head>
@@ -146,194 +147,301 @@
 
 <header>
   <div class="conteneur">
-    <a class="marque" href="#">[Prénom Nom]</a>
-    <nav aria-label="Navigation principale">
+    <a class="marque" href="#accueil">Ayoub Kajai</a>
+    <nav aria-label="Navigation">
       <ul>
-        <li><a href="#projets">Projets</a></li>
-        <li><a href="#interviews">Interviews</a></li>
-        <li><a href="#parcours">Parcours</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#parcours"><span lang="fr">Parcours</span><span lang="en">Pathway</span></a></li>
+        <li><a href="#projets"><span lang="fr">Projets</span><span lang="en">Projects</span></a></li>
+        <li><a href="#avenir"><span lang="fr">Avenir</span><span lang="en">Next steps</span></a></li>
+        <li><a href="#mobilite"><span lang="fr">Mobilité</span><span lang="en">Mobility</span></a></li>
+        <li><a href="#sports"><span lang="fr">Sports</span><span lang="en">Sports</span></a></li>
       </ul>
     </nav>
+    <div class="reglages">
+      <button type="button" id="btn-langue" aria-label="Switch to English">EN</button>
+      <button type="button" id="btn-theme" aria-label="Changer de thème">🌓</button>
+    </div>
   </div>
 </header>
 
-<main class="conteneur">
+<main class="conteneur" id="accueil">
 
-  <!-- ===== HERO : ton elevator pitch en 3 phrases ===== -->
+  <!-- ===== HERO ===== -->
   <div class="hero">
     <div>
-      <h1>[Prénom Nom]</h1>
-      <p class="accroche">Étudiant en [année] de [formation] à [école], je me spécialise dans le calcul haute performance et le traitement de données massives.</p>
-      <p class="recherche">Je cherche un [stage / une alternance] de [durée] à partir de [mois année], dans une équipe qui fait tourner de gros calculs ou de gros volumes de données.</p>
+      <h1>Ayoub Kajai</h1>
+      <p class="accroche" lang="fr">Élève-ingénieur en première année à l’INP-ENSEEIHT (N7), je me spécialise dans la donnée, le calcul haute performance et le Big Data.</p>
+      <p class="accroche" lang="en">First-year engineering student at INP-ENSEEIHT (N7), specialising in data, high-performance computing and Big Data.</p>
+      <p class="recherche" lang="fr">Je cherche un stage en data, HPC ou Big Data, dans une équipe qui fait tourner de gros calculs ou de gros volumes de données.</p>
+      <p class="recherche" lang="en">I am looking for an internship in data, HPC or Big Data, in a team running large computations or large volumes of data.</p>
       <div class="actions">
-        <a class="bouton plein" href="#projets">Voir mes projets</a>
-        <a class="bouton vide" href="cv.pdf">Télécharger mon CV</a>
+        <a class="bouton plein" href="assets/CV_Ayoub_Kajai_FR.pdf" download lang="fr">Télécharger mon CV</a>
+        <a class="bouton plein" href="assets/CV_Ayoub_Kajai_EN.pdf" download lang="en">Download my CV</a>
+        <a class="bouton vide" href="assets/CV_Ayoub_Kajai_EN.pdf" download lang="fr">CV en anglais</a>
+        <a class="bouton vide" href="assets/CV_Ayoub_Kajai_FR.pdf" download lang="en">CV in French</a>
+        <!-- Remplace [profil] par ton identifiant LinkedIn -->
+        <a class="bouton vide" href="https://www.linkedin.com/in/[profil]" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
 
-    <figure class="cluster" id="cluster" aria-describedby="legende-cluster">
+    <figure class="cluster" id="cluster">
       <div class="noeuds" aria-hidden="true">
-        <div class="noeud"><span class="nom">nœud 1</span><div class="coeurs"></div></div>
-        <div class="noeud"><span class="nom">nœud 2</span><div class="coeurs"></div></div>
-        <div class="noeud"><span class="nom">nœud 3</span><div class="coeurs"></div></div>
-        <div class="noeud"><span class="nom">nœud 4</span><div class="coeurs"></div></div>
+        <div class="noeud"><span class="nom"><span lang="fr">nœud</span><span lang="en">node</span> 1</span><div class="coeurs"></div></div>
+        <div class="noeud"><span class="nom"><span lang="fr">nœud</span><span lang="en">node</span> 2</span><div class="coeurs"></div></div>
+        <div class="noeud"><span class="nom"><span lang="fr">nœud</span><span lang="en">node</span> 3</span><div class="coeurs"></div></div>
+        <div class="noeud"><span class="nom"><span lang="fr">nœud</span><span lang="en">node</span> 4</span><div class="coeurs"></div></div>
       </div>
       <figcaption>
-        <span id="legende-cluster">Une même tâche découpée sur 4&nbsp;nœuds et 64&nbsp;cœurs&nbsp;: c’est ce que j’apprends à faire.</span>
-        <button type="button" id="relancer">Relancer</button>
+        <span lang="fr">Une même tâche découpée sur 4&nbsp;nœuds et 64&nbsp;cœurs&nbsp;: c’est le calcul parallèle.</span>
+        <span lang="en">One task split across 4 nodes and 64 cores: that’s parallel computing.</span>
+        <button type="button" id="relancer"><span lang="fr">Relancer</span><span lang="en">Run again</span></button>
       </figcaption>
     </figure>
   </div>
 
-  <!-- ===== COMPÉTENCES : ne garde que ce que tu sais vraiment faire ===== -->
+  <!-- ===== ELEVATOR PITCH (vidéo : assets/elevator.mp4) ===== -->
+  <section id="pitch" aria-labelledby="t-pitch">
+    <h2 id="t-pitch">Elevator pitch</h2>
+    <div class="pitch">
+      <div>
+        <p lang="fr">Ma présentation en vidéo, en anglais (environ 2&nbsp;min&nbsp;45)&nbsp;: d’où je viens, ce que j’ai traversé pour arriver ici, et surtout ce que je veux construire dans le calcul haute performance et le Big Data.</p>
+        <p lang="en">My video introduction (about 2&nbsp;min&nbsp;45): where I come from, what it took to get here, and above all what I want to build in high-performance computing and Big Data.</p>
+      </div>
+      <video controls preload="metadata">
+        <source src="assets/elevator.mp4" type="video/mp4">
+        <span lang="fr">Votre navigateur ne peut pas lire cette vidéo. <a href="assets/elevator.mp4">Téléchargez-la ici</a>.</span>
+        <span lang="en">Your browser cannot play this video. <a href="assets/elevator.mp4">Download it here</a>.</span>
+      </video>
+    </div>
+  </section>
+
+  <!-- ===== COMPÉTENCES ===== -->
   <section id="competences" aria-labelledby="t-competences">
-    <h2 id="t-competences">Ce que je sais faire</h2>
+    <h2 id="t-competences"><span lang="fr">Compétences</span><span lang="en">Skills</span></h2>
     <div class="competences">
       <div>
-        <h3>Calcul parallèle</h3>
+        <h3><span lang="fr">Programmation</span><span lang="en">Programming</span></h3>
+        <ul><li>Python</li><li>C</li><li>Ada</li><li>SQL</li></ul>
+      </div>
+      <div>
+        <h3><span lang="fr">Outils et création</span><span lang="en">Tools and creative</span></h3>
         <ul>
-          <li>C / C++</li>
-          <li>MPI et OpenMP</li>
-          <li>CUDA (bases)</li>
-          <li>Slurm, soumission de jobs</li>
+          <li>Excel, PowerPoint</li>
+          <li><span lang="fr">Montage vidéo</span><span lang="en">Video editing</span></li>
+          <li>Motion design</li>
         </ul>
       </div>
       <div>
-        <h3>Données massives</h3>
+        <h3><span lang="fr">Langues</span><span lang="en">Languages</span></h3>
         <ul>
-          <li>Python, NumPy, Pandas</li>
-          <li>Apache Spark</li>
-          <li>Hadoop / HDFS</li>
-          <li>SQL</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Socle système</h3>
-        <ul>
-          <li>Linux, Bash</li>
-          <li>Réseaux</li>
-          <li>Git, Docker</li>
-          <li>Bonnes pratiques de sécurité</li>
+          <li><span lang="fr">Français : C1 (DALF)</span><span lang="en">French: C1 (DALF)</span></li>
+          <li><span lang="fr">Anglais : courant</span><span lang="en">English: fluent</span></li>
+          <li><span lang="fr">Arabe : langue maternelle</span><span lang="en">Arabic: native</span></li>
+          <li><span lang="fr">Espagnol : débutant</span><span lang="en">Spanish: beginner</span></li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- ===== PROJETS : un projet = un problème, une méthode, un résultat chiffré ===== -->
-  <section id="projets" aria-labelledby="t-projets">
-    <h2 id="t-projets">Projets</h2>
-
-    <article class="projet">
-      <div class="resultat">×[N]<small>plus rapide sur [N]&nbsp;cœurs</small></div>
-      <div>
-        <h3>[Parallélisation d’un calcul avec MPI]</h3>
-        <p>[Quel calcul, pourquoi il était lent, comment tu l’as découpé entre les processus.]</p>
-        <p class="outils">C, MPI, Slurm. <a href="https://github.com/[pseudo]/[depot]">Voir le code</a></p>
-      </div>
-    </article>
-
-    <article class="projet">
-      <div class="resultat">[N]&nbsp;Go<small>de données traitées</small></div>
-      <div>
-        <h3>[Pipeline de traitement avec Spark]</h3>
-        <p>[Quelles données, quelle question tu voulais y répondre, ce que tu as trouvé.]</p>
-        <p class="outils">Python, PySpark. <a href="https://github.com/[pseudo]/[depot]">Voir le code</a></p>
-      </div>
-    </article>
-
-    <article class="projet">
-      <div class="resultat">[N]&nbsp;%<small>[gain de temps / mémoire]</small></div>
-      <div>
-        <h3>[Accélération GPU d’un traitement]</h3>
-        <p>[Ce que tu as porté sur GPU et ce que tu as appris en mesurant les performances.]</p>
-        <p class="outils">CUDA, C++. <a href="https://github.com/[pseudo]/[depot]">Voir le code</a></p>
-      </div>
-    </article>
-  </section>
-
-  <!-- ===== INTERVIEWS : seulement avec l'accord de la personne ===== -->
-  <section id="interviews" aria-labelledby="t-interviews">
-    <h2 id="t-interviews">Ce que m’ont appris des ingénieurs</h2>
-    <p>J’interroge des professionnels du HPC et de la data pour comprendre leur quotidien et préparer mon entrée dans le métier.</p>
-    <div class="interviews">
-      <div>
-        <blockquote>[Le conseil ou l’idée qui t’a le plus marqué, reformulé en une ou deux phrases.]</blockquote>
-        <p class="qui">[Prénom], [poste] chez [entreprise]. <a href="interviews/[nom-fichier].html">Lire l’échange</a></p>
-      </div>
-      <div>
-        <blockquote>[Deuxième enseignement clé.]</blockquote>
-        <p class="qui">[Prénom], [poste] chez [entreprise]. <a href="interviews/[nom-fichier].html">Lire l’échange</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PARCOURS : la réorientation racontée comme un atout ===== -->
+  <!-- ===== PARCOURS (du plus récent au plus ancien) ===== -->
   <section id="parcours" aria-labelledby="t-parcours">
-    <h2 id="t-parcours">Parcours</h2>
+    <h2 id="t-parcours"><span lang="fr">Parcours académique</span><span lang="en">Academic pathway</span></h2>
     <ol class="parcours">
-      <li>
-        <span class="periode">[Année] – aujourd’hui</span>
-        <h3>[Formation], [école]</h3>
-        <p>Spécialisation progressive vers le calcul parallèle et les données massives&nbsp;: [cours ou modules clés].</p>
+      <li class="actuel">
+        <span class="periode"><span lang="fr">2026 – 2029, en cours</span><span lang="en">2026 – 2029, current</span></span>
+        <h3>INP-ENSEEIHT (N7), Toulouse</h3>
+        <p lang="fr">Cycle ingénieur en Sciences du Numérique (Informatique et Télécommunications), 1re année. Admis via le concours CCINP.</p>
+        <p lang="en">Engineering degree in Digital Sciences (Computer Science and Telecommunications), 1st year. Admitted through the CCINP competitive exam.</p>
       </li>
       <li>
-        <span class="periode">[Année] – [année]</span>
-        <h3>Premiers pas en cybersécurité</h3>
-        <p>J’en garde une pratique solide de Linux, des réseaux et du scripting, un socle direct pour exploiter et administrer des clusters de calcul.</p>
+        <span class="periode">2024 – 2026</span>
+        <h3><span lang="fr">Classes préparatoires MP, Lycée Reda Slaoui, Agadir</span><span lang="en">Preparatory classes (MP), Lycée Reda Slaoui, Agadir</span></h3>
+        <p lang="fr">Deux années intensives en mathématiques et physique.</p>
+        <p lang="en">Two intensive years of mathematics and physics.</p>
       </li>
       <li>
-        <span class="periode">[Année]</span>
-        <h3>[Diplôme précédent], [établissement]</h3>
+        <span class="periode">2024</span>
+        <h3><span lang="fr">Baccalauréat Sciences Mathématiques, Lycée Al Inbiaat, Agadir</span><span lang="en">Baccalaureate in Mathematical Sciences, Lycée Al Inbiaat, Agadir</span></h3>
+        <p lang="fr">Mention Très Bien (18,25/20).</p>
+        <p lang="en">Highest honours (18.25/20).</p>
       </li>
     </ol>
   </section>
 
-  <section id="contact" class="contact" aria-labelledby="t-contact">
-    <h2 id="t-contact">Me contacter</h2>
-    <p>Une offre, un conseil ou dix minutes pour me parler de votre métier&nbsp;? Écrivez-moi.</p>
-    <ul>
-      <li><a href="mailto:[adresse@email.com]">[adresse@email.com]</a></li>
-      <li><a href="https://www.linkedin.com/in/[profil]">LinkedIn</a></li>
-      <li><a href="https://github.com/[pseudo]">GitHub</a></li>
-    </ul>
+  <!-- ===== PROJETS ===== -->
+  <section id="projets" aria-labelledby="t-projets">
+    <h2 id="t-projets"><span lang="fr">Projets</span><span lang="en">Projects</span></h2>
+
+    <article class="projet">
+      <div class="type"><span lang="fr">TIPE 2026</span><span lang="en">TIPE 2026</span></div>
+      <div>
+        <h3><span lang="fr">[Intitulé de ton TIPE]</span><span lang="en">[Your TIPE title]</span></h3>
+        <p lang="fr">Étude théorique et de terrain d’une problématique réelle, puis réalisation d’une solution concrète avec des outils techniques. [Problématique, méthode, résultat.]</p>
+        <p lang="en">Theoretical and field study of a real-world problem, followed by a hands-on solution built with technical tools. [Problem, method, result.]</p>
+      </div>
+    </article>
+
+    <article class="projet">
+      <div class="type"><span lang="fr">Projet perso</span><span lang="en">Personal</span></div>
+      <div>
+        <h3><span lang="fr">Interface de gestion de budget</span><span lang="en">Monthly budget dashboard</span></h3>
+        <p lang="fr">Outil de suivi des dépenses mensuelles personnelles.</p>
+        <p lang="en">Tool to track personal monthly spending.</p>
+        <p class="outils">[Technologies]. <a href="https://github.com/[pseudo]/[depot]"><span lang="fr">Voir le code</span><span lang="en">View the code</span></a></p>
+      </div>
+    </article>
+
+    <article class="projet">
+      <div class="type"><span lang="fr">Projet perso</span><span lang="en">Personal</span></div>
+      <div>
+        <h3><span lang="fr">Application de suivi sportif</span><span lang="en">Workout tracking app</span></h3>
+        <p lang="fr">Application d’enregistrement et de suivi des séances de musculation.</p>
+        <p lang="en">App to log and follow weight-training sessions.</p>
+        <p class="outils">[Technologies]. <a href="https://github.com/[pseudo]/[depot]"><span lang="fr">Voir le code</span><span lang="en">View the code</span></a></p>
+      </div>
+    </article>
+
+    <article class="projet">
+      <div class="type"><span lang="fr">Projet perso</span><span lang="en">Personal</span></div>
+      <div>
+        <h3><span lang="fr">Site web pour un restaurant</span><span lang="en">Restaurant website</span></h3>
+        <p lang="fr">Conception et développement d’un site, réalisé avec l’aide d’outils d’IA.</p>
+        <p lang="en">Design and development of a website, built with AI-assisted tools.</p>
+        <p class="outils">[Technologies]. <a href="https://github.com/[pseudo]/[depot]"><span lang="fr">Voir le code</span><span lang="en">View the code</span></a></p>
+      </div>
+    </article>
   </section>
 
+  <!-- ===== MON AVENIR ===== -->
+  <section id="avenir" aria-labelledby="t-avenir">
+    <h2 id="t-avenir"><span lang="fr">Où je veux aller</span><span lang="en">Where I’m heading</span></h2>
+    <div class="avenir">
+      <div>
+        <h3><span lang="fr">Ma spécialisation</span><span lang="en">My specialisation</span></h3>
+        <p lang="fr">Le calcul haute performance et le Big Data&nbsp;: découper un problème en milliers de morceaux traités en même temps, pour simuler le climat, concevoir un avion ou analyser des milliards de données.</p>
+        <p lang="en">High-performance computing and Big Data: breaking a problem into thousands of pieces that run at the same time, to simulate the climate, design an aircraft or analyse billions of data points.</p>
+      </div>
+      <div>
+        <h3><span lang="fr">Mes prochains projets</span><span lang="en">My next projects</span></h3>
+        <p lang="fr">Apprendre la programmation parallèle avec MPI et OpenMP pour accélérer une vraie simulation, puis construire un pipeline de données massives avec Spark. Chaque projet sera publié sur GitHub.</p>
+        <p lang="en">Learning parallel programming with MPI and OpenMP to speed up a real simulation, then building a large-scale data pipeline with Spark. Every project will be published on GitHub.</p>
+      </div>
+      <div>
+        <h3><span lang="fr">Les structures que je vise</span><span lang="en">Where I want to work</span></h3>
+        <p lang="fr">Le CERFACS, Météo-France, Airbus, le CNES et le CEA&nbsp;: la simulation numérique et le calcul intensif, d’abord en stage, puis pour mon projet de fin d’études.</p>
+        <p lang="en">CERFACS, Météo-France, Airbus, CNES and CEA: numerical simulation and supercomputing, first as an intern, then for my final-year project.</p>
+      </div>
+      <div>
+        <h3><span lang="fr">Ce que je veux apporter</span><span lang="en">What I want to bring</span></h3>
+        <p lang="fr">Un calcul plus sobre, qui fait plus avec moins d’énergie. Et, un jour, mettre ces outils au service de régions comme la mienne, où l’eau devient rare.</p>
+        <p lang="en">Smarter, greener computing that does more with less energy. And one day, putting these tools to work for regions like mine, where water is running out.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERVIEWS (avec l'accord des personnes) ===== -->
+  <section id="interviews" aria-labelledby="t-interviews">
+    <h2 id="t-interviews"><span lang="fr">Ce que m’ont appris des ingénieurs</span><span lang="en">What engineers taught me</span></h2>
+    <p lang="fr">J’interroge des professionnels du HPC et de la data pour comprendre leur quotidien et préparer mon entrée dans le métier.</p>
+    <p lang="en">I interview HPC and data professionals to understand their daily work and prepare my entry into the field.</p>
+    <div class="interviews">
+      <div>
+        <blockquote>[Le conseil qui t’a le plus marqué, reformulé.]</blockquote>
+        <p class="qui">[Prénom], [poste], [entreprise]</p>
+      </div>
+      <div>
+        <blockquote>[Deuxième enseignement clé.]</blockquote>
+        <p class="qui">[Prénom], [poste], [entreprise]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MOBILITÉ, ENGAGEMENT, SPORTS ===== -->
+  <section aria-label="Mobilité, engagement et sports">
+    <div class="trio">
+      <section id="mobilite" aria-labelledby="t-mobilite">
+        <h2 id="t-mobilite"><span lang="fr">Mobilité internationale</span><span lang="en">International mobility</span></h2>
+        <p lang="fr">Après mes études au Maroc, je poursuis ma formation d’ingénieur en France. [Ton projet de mobilité&nbsp;: pays visé, semestre ou stage à l’étranger, et pourquoi.]</p>
+        <p lang="en">After studying in Morocco, I am continuing my engineering education in France. [Your mobility plan: target country, semester or internship abroad, and why.]</p>
+      </section>
+      <!-- Si tu n'as pas d'engagement associatif pour l'instant, supprime ce bloc. -->
+      <section id="engagement" aria-labelledby="t-engagement">
+        <h2 id="t-engagement"><span lang="fr">Engagement</span><span lang="en">Engagement</span></h2>
+        <p lang="fr">[Association, club de l’école, bénévolat&nbsp;: ce que tu y fais et ce que tu en retires.]</p>
+        <p lang="en">[Association, school club, volunteering: what you do and what you gain from it.]</p>
+      </section>
+      <section id="sports" aria-labelledby="t-sports">
+        <h2 id="t-sports"><span lang="fr">Sports et loisirs</span><span lang="en">Sports and hobbies</span></h2>
+        <p lang="fr">Football, musculation et course à pied, six séances par semaine. Échecs (1280 Elo). La régularité de l’entraînement, je l’applique aussi à mes études.</p>
+        <p lang="en">Football, weight training and running, six sessions a week. Chess (1280 Elo). I bring the same consistency to my studies.</p>
+      </section>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="t-contact">
+    <h2 id="t-contact"><span lang="fr">Me contacter</span><span lang="en">Contact</span></h2>
+    <p lang="fr">Une offre de stage, un conseil ou dix minutes pour me parler de votre métier&nbsp;? Écrivez-moi.</p>
+    <p lang="en">An internship offer, some advice, or ten minutes to tell me about your job? Get in touch.</p>
+    <ul>
+      <li><a href="mailto:ayoub.kajai2024@gmail.com">ayoub.kajai2024@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/[profil]" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/[pseudo]" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </section>
 </main>
 
 <footer>
-  <div class="conteneur">[Prénom Nom], [année]. Site hébergé sur GitHub Pages.</div>
+  <div class="conteneur">Ayoub Kajai, INP-ENSEEIHT, <span id="annee">2026</span>.</div>
 </footer>
 
 <script>
-  // Remplit chaque nœud de 16 cœurs, puis « lance » le calcul une fois au chargement.
-  (function () {
-    var cluster = document.getElementById('cluster');
-    var bouton = document.getElementById('relancer');
-    var calme = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+(function () {
+  var root = document.documentElement;
+  function lire(cle) { try { return localStorage.getItem(cle); } catch (e) { return null; } }
+  function ecrire(cle, val) { try { localStorage.setItem(cle, val); } catch (e) {} }
 
-    document.querySelectorAll('.coeurs').forEach(function (bloc, n) {
-      for (var i = 0; i < 16; i++) {
-        var c = document.createElement('div');
-        c.className = 'coeur';
-        // Les 4 nœuds démarrent ensemble : chaque cœur s'allume selon son rang local.
-        if (!calme) c.style.transitionDelay = (i * 55 + n * 20) + 'ms';
-        bloc.appendChild(c);
-      }
-    });
+  /* ----- Langue ----- */
+  var btnLangue = document.getElementById('btn-langue');
+  function appliquerLangue(l) {
+    root.dataset.lang = l; root.lang = l;
+    btnLangue.textContent = l === 'fr' ? 'EN' : 'FR';
+    btnLangue.setAttribute('aria-label', l === 'fr' ? 'Switch to English' : 'Passer en français');
+  }
+  var langue = lire('langue');
+  if (langue !== 'fr' && langue !== 'en') langue = (navigator.language || 'fr').toLowerCase().indexOf('fr') === 0 ? 'fr' : 'en';
+  appliquerLangue(langue);
+  btnLangue.addEventListener('click', function () {
+    langue = langue === 'fr' ? 'en' : 'fr'; appliquerLangue(langue); ecrire('langue', langue);
+  });
 
-    function lancer() {
-      // Éteint tous les cœurs d'un coup, puis relance l'allumage progressif.
-      cluster.classList.add('reinit');
-      cluster.classList.remove('lance');
-      void cluster.offsetWidth;
-      cluster.classList.remove('reinit');
-      requestAnimationFrame(function () { cluster.classList.add('lance'); });
+  /* ----- Thème clair / sombre ----- */
+  var theme = lire('theme');
+  if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
+  document.getElementById('btn-theme').addEventListener('click', function () {
+    var sombre = root.dataset.theme ? root.dataset.theme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = sombre ? 'light' : 'dark'; ecrire('theme', root.dataset.theme);
+  });
+
+  /* ----- Cluster : allumage des cœurs ----- */
+  var cluster = document.getElementById('cluster');
+  var calme = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.coeurs').forEach(function (bloc, n) {
+    for (var i = 0; i < 16; i++) {
+      var c = document.createElement('div'); c.className = 'coeur';
+      if (!calme) c.style.transitionDelay = (i * 55 + n * 20) + 'ms';
+      bloc.appendChild(c);
     }
+  });
+  function lancer() {
+    cluster.classList.add('reinit'); cluster.classList.remove('lance');
+    void cluster.offsetWidth; cluster.classList.remove('reinit');
+    requestAnimationFrame(function () { cluster.classList.add('lance'); });
+  }
+  window.addEventListener('load', function () { setTimeout(lancer, 300); });
+  document.getElementById('relancer').addEventListener('click', lancer);
 
-    window.addEventListener('load', function () { setTimeout(lancer, 300); });
-    bouton.addEventListener('click', lancer);
-  })();
+  document.getElementById('annee').textContent = new Date().getFullYear();
+})();
 </script>
 </body>
 </html>
